@@ -11,6 +11,14 @@ export const get = app.get(URL, async (_req: any, res: any) => {
   res.status(200).json(students);
 });
 
+export const info = app.get(`${URL}/info`, async (req: any, res: any) => {
+  let student = await prisma.users_student.findUnique({
+    where: { email: req.query.email },
+  });
+
+  res.status(200).json(student);
+});
+
 export const post = app.post(URL, async (req: any, res: any) => {
   let student = await prisma.users_student.create({
     data: {
