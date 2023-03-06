@@ -10,3 +10,16 @@ export const get = app.get(URL, async (_req: any, res: any) => {
 
   res.status(200).json(students);
 });
+
+export const post = app.post(URL, async (req: any, res: any) => {
+  let student = await prisma.users_student.create({
+    data: {
+      ...req.body,
+      date_registered: new Date(),
+      last_login: new Date(),
+      status: 'Active',
+    },
+  });
+
+  res.status(201).json(student);
+});
