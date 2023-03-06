@@ -18,7 +18,7 @@ model announcements {
   course      String
   description String
   image       String
-  post_date   String
+  post_date   DateTime            @db.Date
   status      String
   title       String
   url         String
