@@ -15,3 +15,18 @@ export const list = app.get(URL, async (_req: any, res: any) => {
 
   res.status(200).json(announcements);
 });
+
+export const post = app.post(`${URL}/post`, async (req: any, res: any) => {
+  console.log(`${URL}/post`);
+  let announcement = await prisma.announcements.create({
+    data: {
+      // Title, author, course, description, image, url
+      ...req.body,
+      post_date: new Date(),
+      views: 0,
+      status: 'Active',
+    },
+  });
+
+  res.status(201).json(announcement);
+});
