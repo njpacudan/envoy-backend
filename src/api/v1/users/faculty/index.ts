@@ -10,3 +10,11 @@ export const list = app.get(URL, async (_req: any, res: any) => {
 
   res.status(200).json(faculty);
 });
+
+export const info = app.get(`${URL}/info`, async (req: any, res: any) => {
+  let faculty = await prisma.users_faculty.findUnique({
+    where: { email: req.query.email },
+  });
+
+  res.status(200).json(faculty);
+});
