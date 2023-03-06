@@ -31,3 +31,16 @@ export const post = app.post(URL, async (req: any, res: any) => {
 
   res.status(201).json(student);
 });
+
+export const disable = app.patch(`${URL}/disable`, async (req: any, res: any) => {
+  await prisma.users_student.update({
+    where: {
+      email: req.query.email,
+    },
+    data: {
+      status: 'Disabled',
+    },
+  });
+
+  res.status(200).json('Your account has been disabled.');
+});
