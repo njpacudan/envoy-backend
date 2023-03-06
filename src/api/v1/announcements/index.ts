@@ -17,7 +17,6 @@ export const list = app.get(URL, async (_req: any, res: any) => {
 });
 
 export const post = app.post(`${URL}/post`, async (req: any, res: any) => {
-  console.log(`${URL}/post`);
   let announcement = await prisma.announcements.create({
     data: {
       // Title, author, course, description, image, url
