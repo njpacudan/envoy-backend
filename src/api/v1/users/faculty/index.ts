@@ -18,3 +18,18 @@ export const info = app.get(`${URL}/info`, async (req: any, res: any) => {
 
   res.status(200).json(faculty);
 });
+
+export const create = app.post(`${URL}/create`, async (req: any, res: any) => {
+  let faculty = await prisma.users_faculty.create({
+    data: {
+      // Name, email, course, password
+      ...req.body,
+      posts: [],
+      date_registered: new Date(),
+      last_login: new Date(),
+      status: 'Active',
+    },
+  });
+
+  res.status(201).json(faculty);
+});
