@@ -29,7 +29,7 @@ model users_faculty {
   id              String   @id @default(auto()) @map("_id") @db.ObjectId
   course          String
   date_registered DateTime @db.Date
-  email           String
+  email           String   @unique
   last_login      DateTime @db.Date
   name            String
   password        String
@@ -41,7 +41,7 @@ model users_student {
   id              String   @id @default(auto()) @map("_id") @db.ObjectId
   course          String
   date_registered DateTime @db.Date
-  email           String
+  email           String   @unique
   last_login      DateTime @db.Date
   name            String
   password        String
