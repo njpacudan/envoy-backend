@@ -1,5 +1,6 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
+import bcrypt from 'bcrypt';
 import app from '../../../../lib/express';
 import prisma from '../../../../lib/prisma';
 
@@ -22,7 +23,9 @@ export const info = app.get(`${URL}/info`, async (req: any, res: any) => {
 export const create = app.post(`${URL}/create`, async (req: any, res: any) => {
   let student = await prisma.users_student.create({
     data: {
+      // Name, email, course, passsword
       ...req.body,
+      password: await bcrypt.hash(req.body.password, 12),
       date_registered: new Date(),
       last_login: new Date(),
       status: 'Active',
