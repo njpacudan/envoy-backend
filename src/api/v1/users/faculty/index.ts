@@ -57,6 +57,7 @@ export const update = app.put(`${URL}/update`, async (req: any, res: any) => {
     data: {
       // Course, email, password.
       ...req.body,
+      password: await bcrypt.hash(req.body.password, 12),
     },
   });
 
