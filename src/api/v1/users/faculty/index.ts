@@ -1,5 +1,6 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
+import bcrypt from 'bcrypt';
 import app from '../../../../lib/express';
 import prisma from '../../../../lib/prisma';
 
@@ -25,6 +26,7 @@ export const create = app.post(`${URL}/create`, async (req: any, res: any) => {
       // Name, email, course, password
       ...req.body,
       posts: [],
+      password: await bcrypt.hash(req.body.password, 12),
       date_registered: new Date(),
       last_login: new Date(),
       status: 'Active',
