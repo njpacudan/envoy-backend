@@ -1,9 +1,9 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
 import app from './lib/express';
-import * as faculty from './api/v1/users/faculty';
-import * as student from './api/v1/users/student';
-import * as announcements from './api/v1/announcements';
+import * as faculty from './routes/users/faculty';
+import * as student from './routes/users/student';
+import * as announcements from './routes/announcements';
 
 faculty;
 student;
