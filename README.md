@@ -55,17 +55,11 @@ The `.env` file contains the following variables:
 
 #### Setup Prisma
 ```bash
-# Initialise Prisma by running the command below. Inside the prisma/ directory, replace 'postgresql' with 'mongodb'.
-npx prisma init
-
-# Update the Prisma by pulling the schema from an existing database.
-npx prisma db pull
-
 # or if prisma/prisma.schema file is already loaded, force override the file.
-npx prisma db pull --force
+npx prisma db pull --force --schema ./src/models/prisma/schema.prisma
 
 # Generate Prisma artifacts.
-npx prisma generate
+npx prisma generate --schema ./src/models/prisma/schema.prisma
 ```
 
 
