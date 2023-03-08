@@ -1,15 +1,14 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
-import express from 'express';
+import app from './lib/express';
+import * as faculty from './api/v1/users/faculty';
+import * as student from './api/v1/users/student';
+import * as announcements from './api/v1/announcements';
 
-const app = express();
+faculty;
+student;
+announcements;
 
-app.use(express.json());
-
-app.get('/', async (_req: any, res: any) => {
-  res.json('Envoy (back-end)');
-});
-
-const server = app.listen(process.env.EXPRESS_PORT, () => {
+export const server = app.listen(process.env.EXPRESS_PORT, () => {
   console.log(`Server ready at: ${process.env.EXPRESS_PORT}`);
 });
