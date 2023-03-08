@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
 import app from '../../lib/express';
-import news from '../../controllers/news';
+import news from '../../controllers/announcements/news';
 
 const URL = `${process.env.API_BASE_URL}/announcements`;
 
