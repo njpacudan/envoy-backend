@@ -24,6 +24,14 @@ export const announcement = app.get(`${URL}/info`, async (req: any, res: any) =>
   res.status(200).json(announcement);
 });
 
+export const news_course = app.get(`${URL}/course`, async (req: any, res: any) => {
+  let courses = await prisma.announcements.findMany({
+    where: { course: req.query.course },
+  });
+
+  res.status(200).json(courses);
+});
+
 export const post = app.post(`${URL}/post`, async (req: any, res: any) => {
   let announcement = await prisma.announcements.create({
     data: {
