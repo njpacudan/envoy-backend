@@ -16,6 +16,14 @@ export const list = app.get(URL, async (_req: any, res: any) => {
   res.status(200).json(announcements);
 });
 
+export const announcement = app.get(`${URL}/:id`, async (req: any, res: any) => {
+  let announcement = await prisma.announcements.findUnique({
+    where: { id: req.body.id },
+  });
+
+  res.status(200).json(announcement);
+});
+
 export const post = app.post(`${URL}/post`, async (req: any, res: any) => {
   let announcement = await prisma.announcements.create({
     data: {
