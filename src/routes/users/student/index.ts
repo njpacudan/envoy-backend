@@ -3,9 +3,9 @@ dotenv.config();
 import app from '../../../lib/express';
 import student from '../../../controllers/users/student';
 
-const URL = `${process.env.API_BASE_URL}/student/student`;
+const URL = `${process.env.API_BASE_URL}/users/student`;
 
-export const list = app.get(`${URL}`, student.list);
+export const list = app.get(URL, student.list);
 
 export const info = app.get(`${URL}/info`, student.info);
 
