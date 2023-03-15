@@ -5,6 +5,13 @@
   "scripts": {
     "dev": "nodemon -L"
   },
+  "_moduleAliases": {
+    "@app": "./src/app",
+    "@config": "./src/config",
+    "@controllers": "./src/controllers",
+    "@interfaces/*": "./src/typescript/interfaces/*",
+    "@lib": "./src/lib"
+  },
   "dependencies": {
     "@mechanicalhuman/bunyan-pretty": "^3.1.0",
     "@prisma/client": "^4.11.0",
