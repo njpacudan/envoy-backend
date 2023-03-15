@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/index.ts"
+    "dev": "nodemon -L"
   },
   "dependencies": {
     "@mechanicalhuman/bunyan-pretty": "^3.1.0",
