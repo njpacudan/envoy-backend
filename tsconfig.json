@@ -12,8 +12,13 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "incremental": true,
+    "baseUrl": "./src",
     "paths": {
-      "@/*": ["./src/*"]
+        "@app": ["app"],
+        "@config": ["config"],
+        "@controllers/*": ["controllers/*"],
+        "@interfaces/*": ["typescript/interfaces/*"],
+        "@lib/*": ["lib/*"],
     }
   },
   "include": ["**/*.ts"],
