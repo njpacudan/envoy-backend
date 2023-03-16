@@ -33,6 +33,14 @@
         "semi": [
             "error",
             "always"
+        ],
+        "eol-last": [
+            "error",
+            "always"
+        ],
+        "no-console": [
+            "warning",
+            "always"
         ]
     }
 }
