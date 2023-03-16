@@ -1,7 +1,7 @@
 import { Application } from 'express';
 import cors from 'cors';
 import project from '../package.json';
-import userRouters from './routes/users/student';
+import usersStudentRoutes from './routes/users.student.route';
 
 export default async function routes(app: Application) {
     app.get('/crash', () => {
@@ -19,5 +19,5 @@ export default async function routes(app: Application) {
         });
     });
 
-    app.use('/users', userRouters);
+    app.use('/users/students', usersStudentRoutes);
 }
