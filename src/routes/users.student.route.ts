@@ -1,5 +1,5 @@
 import { router } from '@lib/express';
-import studentController from '@controllers/users/student';
+import studentController from '@controllers/users.student.controllers';
 
 router.get('/', studentController.list);
 
