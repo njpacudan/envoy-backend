@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
-import app from '../../../lib/express';
-import faculty from '../../../controllers/users/faculty';
+import { app } from '@lib/express';
+import faculty from '@controllers/users.facutly.controllers';
 
 const URL = `${process.env.API_BASE_URL}/users/faculty`;
 

@@ -1,11 +1,11 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
-import app from '../../lib/express';
-import news from '../../controllers/announcements';
+import { app } from '@lib/express';
+import news from '@controllers/announcements.controllers';
 
 const URL = `${process.env.API_BASE_URL}/announcements`;
 
-export const list = app.get(URL, news.list);
+export const list = app.get(URL, news.list)
 
 export const announcement = app.get(`${URL}/info`, news.info);
 

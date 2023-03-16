@@ -1,5 +1,11 @@
 import express from 'express';
 
-const app = express();
+// express.urlencoded({ extended: true }) uu
+export const app = express()
+    // parse incoming requests with JSON payloads; adds body property to request.
+    .use(express.json())
+    // parse incoming HTTP request with URL-encoded payloads; adds body property to request.
+    .use(express.urlencoded({extended: true}));
 
-export default app.use(express.json());
+// Create new Router object.
+export const router = express.Router();

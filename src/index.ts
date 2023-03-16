@@ -1,14 +1,15 @@
-import * as dotenv from 'dotenv';
-dotenv.config();
-import app from './lib/express';
-import * as faculty from './routes/users/faculty';
-import * as student from './routes/users/student';
-import * as announcements from './routes/announcements';
+import 'module-alias/register';
+import { Server, createServer } from 'http';
+import runServer from '@app';
+import logger from '@lib/logger';
+import config from '@config';
 
-faculty;
-student;
-announcements;
+const app = runServer();
+const httpServer = createServer(app);
 
-export const server = app.listen(process.env.EXPRESS_PORT, () => {
-  console.log(`Server ready at: ${process.env.EXPRESS_PORT}`);
+const host: string = config.HOST;
+const port: number = Number(config.PORT) || 3000;
+
+const server: Server = httpServer.listen(port, () => {
+    logger.info(`Listening to port ${host}:${port}`, 'server');
 });
