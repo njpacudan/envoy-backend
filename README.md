@@ -51,10 +51,10 @@ cp -v env.example .env
 #### Setup Prisma
 ```bash
 # or if prisma/prisma.schema file is already loaded, force override the file.
-npx prisma db pull --force --schema ./src/models/prisma/schema.prisma
+npx prisma db pull --force --schema ./src/models/schema.prisma
 
 # Generate Prisma artifacts.
-npx prisma generate --schema ./src/models/prisma/schema.prisma
+npx prisma generate --schema ./src/models/schema.prisma
 ```
 
 
