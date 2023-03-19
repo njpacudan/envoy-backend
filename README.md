@@ -41,10 +41,20 @@ pnpm install
 
 **Note**: If you don't have pnpm, refer to the [install guide](https://pnpm.io/installation).
 
+
+
 #### Setup local .env file
 ```bash
 # Copy the env.example to .env and setup the environment variables.
 cp -v env.example .env
+```
+
+
+##### Generate JWT token key
+```bash
+# Generate a random string of alphanumeric characters.
+# Use the generate value as the `TOKEN_KEY` in your `.env` file.
+echo -n <STRING> | sha256sum
 ```
 
 
