@@ -47,11 +47,6 @@ pnpm install
 cp -v env.example .env
 ```
 
-The `.env` file contains the following variables:
-* `DATABASE_URL`, this contains MongoDB's connection string.
-* `EXPRESS_PORT`, this contains the port that the backend will be running from.
-* `API_BASE_URL`, this contains the API's base url.
-
 
 #### Setup Prisma
 ```bash
