@@ -64,26 +64,5 @@ pnpm dev
 ```
 
 
-### Endpoints
-The API currenlty has the following endpoints:
-* Faculty
-	* `GET`: `/api/v1/users/faculty/`
-	* `GET`: `/api/v1/users/faculty/info`
-	* `POST`: `/api/v1/users/faculty/create/`
-	* `PATCH`: `/api/v1/users/faculty/disable`
-	* `PUT`: `/api/v1/users/faculty/update`
-
-* Users
-	* `GET`: `/api/v1/users/student/`
-	* `GET`: `/api/v1/users/student/info`
-	* `POST`: `/api/v1/users/student/create/`
-	* `PATCH`: `/api/v1/users/student/disable`
-	* `PUT`: `/api/v1/users/student/update`
-
-* Announcements
-	* `GET`: `/api/v1/announcements/`
-	* `POST`: `/api/v1/announcements/post/`
-
-
 ### License
 This program is provided under the [MIT License](./LICENSE)
