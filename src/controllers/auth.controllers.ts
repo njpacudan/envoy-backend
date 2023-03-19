@@ -24,7 +24,7 @@ const authControllers = {
                     status: 'true',
                 },
             });
-            sendVerificationEmail(student.email, 'http://localhost:3000');
+            sendVerificationEmail(student.email);
             return res.status(200).json(jwt.sign(student, config.TOKEN_KEY));
         } else {
             return res.status(409).json('Email is already used.');
