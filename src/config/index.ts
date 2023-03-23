@@ -12,6 +12,16 @@ const config: CONFIG = {
         CLUSTER: String(process.env.CLUSTER),
         DATABASE: String(process.env.DATABASE),
     },
+
+    GMAIL: {
+        GMAIL_USERNAME: String(process.env.GMAIL_USERNAME),
+        GMAIL_PASSWORD: String(process.env.GMAIL_PASSWORD),
+        GMAIL_HOST: String(process.env.GMAIL_HOST),
+        GMAIL_PORT: Number(process.env.GMAIL_PORT),
+        CLIENT_ID: String(process.env.CLIENT_ID),
+        CLIENT_SECRET: String(process.env.CLIENT_SECRET),
+    },
+
     TOKEN_KEY: String(process.env.TOKEN_KEY)
 };
 
