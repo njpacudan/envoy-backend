@@ -17,7 +17,7 @@
         "@app": ["app"],
         "@config": ["config"],
         "@controllers/*": ["controllers/*"],
-        "@interfaces/*": ["typescript/interfaces/*"],
+        "@interfaces/*": ["interfaces/*"],
         "@lib/*": ["lib/*"],
     }
   },
