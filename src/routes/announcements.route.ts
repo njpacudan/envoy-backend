@@ -1,14 +1,10 @@
-import * as dotenv from 'dotenv';
-dotenv.config();
-import { app } from '@lib/express';
-import news from '@controllers/announcements.controllers';
+import express from 'express';
+import newsController from '@controllers/announcements.controllers';
 
-const URL = `${process.env.API_BASE_URL}/announcements`;
+const router = express.Router();
 
-export const list = app.get(URL, news.list)
+router.get('/', newsController.getAllAnnouncements);
+router.get('/college', newsController.getAnnouncementsByCourse);
+router.post('/post', newsController.postAnnouncements);
 
-export const announcement = app.get(`${URL}/info`, news.info);
-
-export const news_course = app.get(`${URL}/course`, news.course);
-
-export const post = app.post(`${URL}/post`, news.post);
+export default router;
