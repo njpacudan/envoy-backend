@@ -1,2 +1,12 @@
-import { app } from '@lib/express';
-import faculty from '@controllers/users.facutly.controllers';
+import express from 'express';
+import facultyController from '@controllers/users.facutly.controllers';
+
+const router = express.Router();
+
+router.get('/list', facultyController.listAllUsers);
+router.post('/signup', facultyController.signUpUser);
+router.post('/singin', facultyController.signInUser);
+router.get('/', facultyController.getUser);
+router.post('/reset', facultyController.resetUser);
+
+export default router;

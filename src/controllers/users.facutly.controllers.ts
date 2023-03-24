@@ -1,14 +1,19 @@
-import bcrypt from 'bcrypt';
 import { prisma } from '@lib/prisma';
+import config from '@config';
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
+import { sendVerificationEmail } from './email.controllers';
 
 const faculty = {
-    list: async (req: any, res: any) => {
+    // For Admin Panel.
+    // Get list of users.
+    listAllUsers: async (_req: any, res: any) => {
         const faculty = await prisma.users_faculty.findMany();
 
         res.status(200).json(faculty);
     },
 
-    info: async (req: any, res: any) => {
+    getUser: async (req: any, res: any) => {
         const faculty = await prisma.users_faculty.findUnique({
             where: { email: req.query.email },
         });
@@ -16,23 +21,56 @@ const faculty = {
         res.status(200).json(faculty);
     },
 
-    create: async (req: any, res: any) => {
-        const faculty = await prisma.users_faculty.create({
-            data: {
-                // Name, email, course, password
-                ...req.body,
-                posts: [],
-                password: await bcrypt.hash(req.body.password, 12),
-                date_registered: new Date(),
-                last_login: new Date(),
-                status: 'Active',
-            },
+    // Create new user.
+    signUpUser: async (req: any, res: any) => {
+        const checkEmail = await prisma.users_student.findUnique({
+            where: {
+                email: req.body.email,
+            }
         });
 
-        res.status(201).json(faculty);
+        if(!checkEmail) {
+            const student = await prisma.users_student.create({
+                data: {
+                    // Name, email, course, password
+                    ...req.body,
+                    password: await bcrypt.hash(req.body.password, 12),
+                    date_registered: new Date(),
+                    last_login: new Date(),
+                    status: 'true',
+                },
+            });
+            sendVerificationEmail(student.email);
+            return res.status(200).json(jwt.sign(student, config.TOKEN_KEY));
+        } else {
+            return res.status(409).json('Email is already used.');
+        }
     },
 
-    disable: async (req: any, res: any) => {
+    // Authenticate existing user.
+    signInUser: async (req: any, res: any) => {
+        try {
+            const user = await prisma.users_student.findFirst({
+                where: {
+                    email: req.body.email,
+                }
+            });
+
+            if(user) {
+                if(await bcrypt.compare(req.body.password, user.password)) {
+                    return res.json(jwt.sign(user, config.TOKEN_KEY));
+                } else {
+                    return res.status(401).json({message: 'Incorrect password'});
+                }
+            } else {
+                return res.status(401).json({message: 'User does not exist.'})
+            }
+        } catch(err: any) {
+            return res.status(500).json({error: err.message});
+        }
+    },
+
+    disableUser: async (req: any, res: any) => {
         await prisma.users_faculty.update({
             where: {
                 email: req.query.email,
@@ -45,7 +83,7 @@ const faculty = {
         res.status(200).json('Your account has been disabled.');
     },
 
-    update: async (req: any, res: any) => {
+    resetUser: async (req: any, res: any) => {
         const faculty = await prisma.users_faculty.update({
             where: {
                 email: req.query.email,
