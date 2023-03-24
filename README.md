@@ -4,10 +4,10 @@
 ## Contents
 * [Dependencies](#dependencies)
 * [Setup](#setup)
-	* [Cloning (HTTPS/SSH)](#cloning-httpsssh)
-	* [Installing the dependencies](#installing-the-dependencies)
-	* [Setup local .env file](#setup-local-env-file)
-	* [Setup Prisma](#setup-prisma)
+    * [Cloning (HTTPS/SSH)](#cloning-httpsssh)
+    * [Installing the dependencies](#installing-the-dependencies)
+    * [Setup local .env file](#setup-local-env-file)
+    * [Setup Prisma](#setup-prisma)
 * [Run](#run)
 * [Endpoints](#endpoints)
 * [License](#license)
@@ -72,6 +72,35 @@ npx prisma generate --schema ./src/models/schema.prisma
 ```bash
 pnpm dev
 ```
+
+
+### Endpoints
+#### Faculty
+| HTTP Request | Endpoint              | Description                  |
+|--------------|-----------------------|------------------------------|
+| POST         | /users/faculty/signup | Create new faculty user      |
+| POST         | /users/faculty/signin | Login existing faculty user |
+| GET          | /users/faculty/:email | Get user information         |
+| POST         | /users/faculty/reset  | Reset password               |
+| POST         | /users/faculty/update | Update faculty user          |
+
+#### Student
+| HTTP Request | Endpoint              | Description                  |
+|--------------|-----------------------|------------------------------|
+| POST         | /users/student/signup | Create new student user      |
+| POST         | /users/student/signin | Login existing student user  |
+| GET          | /users/student/:email | Get user information         |
+| POST         | /users/student/reset  | Reset password               |
+| POST         | /users/student/update | Update faculty user          |
+
+
+#### Announcements
+| HTTP Request | Endpoint                 | Description                              |
+|--------------|--------------------------|------------------------------------------|
+| POST         | /announcements/create    | Create new announcement                  |
+| GET          | /announcements/list      | List all announcements                   |
+| GET          | /announcements/:college  | List announcements from specific college |
+
 
 
 ### License
