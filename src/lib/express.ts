@@ -8,4 +8,4 @@ export const app = express()
     .use(express.urlencoded({extended: true}));
 
 // Create new Router object.
-export const router = express.Router();
+// export const router = express.Router();
