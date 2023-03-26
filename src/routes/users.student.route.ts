@@ -8,5 +8,6 @@ router.post('/signup', studentController.signUpUser);
 router.post('/signin', studentController.signInUser);
 router.get('/', studentController.getUser);
 router.post('/reset', studentController.resetUser);
+router.patch('/disable', studentController.disableUser);
 
 export default router;
