@@ -1,15 +1,15 @@
-import * as dotenv from 'dotenv';
-dotenv.config();
-import express from 'express';
+import 'module-alias/register';
+import { Server, createServer } from 'http';
+import runServer from '@app';
+import logger from '@lib/logger';
+import config from '@config';
 
-const app = express();
+const app = runServer();
+const httpServer = createServer(app);
 
-app.use(express.json());
+const host: string = config.HOST;
+const port: number = Number(config.PORT) || 3000;
 
-app.get('/', async (_req: any, res: any) => {
-  res.json('Envoy (back-end)');
-});
-
-const server = app.listen(process.env.EXPRESS_PORT, () => {
-  console.log(`Server ready at: ${process.env.EXPRESS_PORT}`);
+const server: Server = httpServer.listen(port, () => {
+    logger.info(`Listening to port ${host}:${port}`, 'server');
 });

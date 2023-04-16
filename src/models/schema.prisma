@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("MONGODB_URL")
+}
+
+type announcements_author {
+  email String
+  name  String
+}
+
+model announcements {
+  id          String                @id @default(auto()) @map("_id") @db.ObjectId
+  author      announcements_author
+  course      String
+  description String
+  image       String
+  post_date   DateTime              @db.Date
+  status      String
+  title       String
+  url         String
+  views       Int
+}
+
+model users_faculty {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  course          String
+  date_registered DateTime @db.Date
+  email           String   @unique
+  last_login      DateTime @db.Date
+  name            String
+  password        String
+  posts           String[]
+  status          String
+  verified        Boolean
+}
+
+model users_student {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  course          String
+  date_registered DateTime @db.Date
+  email           String   @unique
+  last_login      DateTime @db.Date
+  name            String
+  password        String
+  status          String
+  verified        Boolean
+}
