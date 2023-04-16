@@ -1,5 +1,5 @@
 import express from 'express';
-import { verifyUserAccount } from '@controllers/auth.controller';
+import { verifyUserAccount } from '@controllers/auth.controllers';
 
 const router = express.Router();
 
