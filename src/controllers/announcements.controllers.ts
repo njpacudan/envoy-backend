@@ -12,6 +12,19 @@ const news = {
         res.status(200).json(announcements);
     },
 
+    getUniAnnouncements: async (_req: any, res: any) => {
+        const announcements = await prisma.announcements.findMany({
+            where: {
+                course: 'University',
+            },
+            orderBy: {
+                post_date: 'desc',
+            }
+        })
+
+        return res.status(200).json(announcements);
+    },
+
     getAnnouncementInfo: async (req: any, res: any) => {
         const announcement = await prisma.announcements.findUnique({
             where: { id: req.body.id },
