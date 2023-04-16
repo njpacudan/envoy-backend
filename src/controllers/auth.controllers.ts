@@ -1,58 +1,45 @@
-import { prisma } from '@lib/prisma';
 import config from '@config';
+import { prisma } from '@lib/prisma';
+import { users_faculty, users_student } from '@prisma/client';
 import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
-import { sendVerificationEmail } from './email.controllers';
 
-const authControllers = {
-    // Create new user.
-    signUpUser: async (req: any, res: any) => {
-        const checkEmail = await prisma.users_student.findUnique({
-            where: {
-                email: req.body.email,
-            }
-        });
-
-        if(!checkEmail) {
-            const student = await prisma.users_student.create({
-                data: {
-                    // Name, email, course, password
-                    ...req.body,
-                    password: await bcrypt.hash(req.body.password, 12),
-                    date_registered: new Date(),
-                    last_login: new Date(),
-                    status: 'true',
+export const verifyUserAccount = (req: any, res: any) => {
+    const { token } = req.params;
+    console.log(req.params.token);
+    console.log('TOKEN:', token);
+    jwt.verify(token, config.TOKEN_KEY, async (err: any, decoded: any) => {
+        if(err) {
+            res.sendStatus(404).json(err);
+        } else {
+            const checkCollection = await prisma.users_faculty.findUnique({
+                where: {
+                    email: decoded.email,
                 },
             });
-            sendVerificationEmail(student.email);
-            return res.status(200).json(jwt.sign(student, config.TOKEN_KEY));
-        } else {
-            return res.status(409).json('Email is already used.');
-        }
-    },
 
-    // Authenticate existing user.
-    signInUser: async (req: any, res: any) => {
-        try {
-            const user = await prisma.users_student.findFirst({
-                where: {
-                    email: req.body.email,
-                }
-            });
+            let user: users_faculty | users_student;
 
-            if(user) {
-                if(await bcrypt.compare(req.body.password, user.password)) {
-                    return res.json(jwt.sign(user, config.TOKEN_KEY));
-                } else {
-                    return res.status(401).json({message: 'Incorrect password'});
-                }
-            } else {
-                return res.status(401).json({message: 'User does not exist.'})
+            if(checkCollection) {
+                user = await prisma.users_faculty.update({
+                    where: {
+                        email: decoded.email,
+                    },
+                    data: {
+                        verified: true,
+                    },
+                });
+            } else if(!checkCollection) {
+                user = await prisma.users_student.update({
+                    where: {
+                        email: decoded.email,
+                    },
+                    data: {
+                        verified: true,
+                    },
+                });
             }
-        } catch(err: any) {
-            return res.status(500).json({error: err.message});
-        }
-    },
-}
 
-export default authControllers;
+            res.sendStatus(200).json('YOUR ACCOUNT HAS BEEN VERIFIED!');
+        }
+    });
+};
