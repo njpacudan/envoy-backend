@@ -39,10 +39,12 @@ const student = {
                     date_registered: new Date(),
                     last_login: new Date(),
                     status: 'true',
+                    verified: false,
                 },
             });
-            sendVerificationEmail(student.email);
-            return res.status(200).json(jwt.sign(student, config.TOKEN_KEY));
+            const token = jwt.sign(student, config.TOKEN_KEY);
+            sendVerificationEmail(student.email, token);
+            return res.status(200).json(token);
         } else {
             return res.status(409).json('Email is already used.');
         }
@@ -100,6 +102,8 @@ const student = {
 
         res.status(200).json(student);
     },
+
+    verifyUser: async (req: any, res: any) => {},
 };
 
 export default student;
