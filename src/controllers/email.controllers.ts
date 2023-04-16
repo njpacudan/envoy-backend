@@ -1,11 +1,7 @@
 import nodemailer from 'nodemailer';
 import config from '@config';
-import { promisify } from 'util';
-import fs from 'fs';
 
-const readFile = promisify(fs.readFile);
-
-export const sendVerificationEmail = async (userEmail: string) => {
+export const sendVerificationEmail = async (userEmail: string, token: any) => {
     const transporter = nodemailer.createTransport({
         host: config.GMAIL.GMAIL_HOST,
         port: config.GMAIL.GMAIL_PORT,
@@ -15,15 +11,17 @@ export const sendVerificationEmail = async (userEmail: string) => {
         },
     });
 
+    const URL = `http://${config.HOST}:${config.PORT}/verify/${token}/`;
+
     const message = {
         from: config.GMAIL.GMAIL_USERNAME,
         to: userEmail,
         subject: 'Envoy',
         text: 'Envoy',
-        html: await readFile('./src/templates/verity.template.html', 'utf-8'),
+        html: `Verify your email: <a href="${URL}">Click here!</a>`,
     }
 
-    transporter.sendMail(message, function(err: any, info: any) {
+    transporter.sendMail(message, async (err: any, info: any) => {
         if(err) {
             console.log(err.message);
         } else {
