@@ -1,7 +1,8 @@
-import { router } from '@lib/express';
-import authControllers from '@controllers/auth.controllers';
+import express from 'express';
+import { verifyUserAccount } from '@controllers/auth.controller';
 
-router.post('/signup', authControllers.signUpUser);
-router.post('/signin', authControllers.signInUser);
+const router = express.Router();
+
+router.get('/:token', verifyUserAccount);
 
 export default router;
