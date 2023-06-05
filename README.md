@@ -2,6 +2,7 @@
 
 
 ## Contents
+* [Design Patterns]
 * [Dependencies](#dependencies)
 * [Setup](#setup)
     * [Cloning (HTTPS/SSH)](#cloning-httpsssh)
@@ -11,6 +12,12 @@
 * [Run](#run)
 * [Endpoints](#endpoints)
 * [License](#license)
+
+
+### Design Patterns
+ * Microservices
+ * Middleware
+ * MVC
 
 
 ### Dependencies
