@@ -11,5 +11,5 @@ const host: string = config.HOST;
 const port: number = Number(config.PORT) || 3000;
 
 const server: Server = httpServer.listen(port, () => {
-    logger.info(`Listening to port ${host}:${port}`, 'server');
+  logger.info(`Listening to port ${host}:${port}`, 'server');
 });
