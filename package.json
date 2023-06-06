@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon -L"
+    "dev": "nodemon -L",
+    "build": "echo 'build'"
   },
   "_moduleAliases": {
     "@app": "./src/app",
