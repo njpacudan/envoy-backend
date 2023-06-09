@@ -2,4 +2,5 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  - init: ❯ pnpm install && npx prisma generate --schema ./src/models/schema.prisma && pnpm --filter=envoy-backend-express deploy build/
+  # - init: pnpm install && npx prisma generate --schema ./src/models/schema.prisma && pnpm && pnpm --filter=envoy-backend-express deploy build/
+  - init: pnpm install && npx prisma generate --schema ./src/models/schema.prisma && gp env > gitpod.env && pnpm dev
