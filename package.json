@@ -3,14 +3,16 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon -L"
+    "dev": "nodemon -L",
+    "build": "echo 'build'"
   },
   "_moduleAliases": {
     "@app": "./src/app",
     "@config": "./src/config",
     "@controllers": "./src/controllers",
     "@interfaces/*": "./src/interfaces/*",
-    "@lib": "./src/lib"
+    "@lib": "./src/lib",
+    "@middleware": "./src/middleware"
   },
   "dependencies": {
     "@mechanicalhuman/bunyan-pretty": "^3.1.0",

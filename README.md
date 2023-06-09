@@ -2,6 +2,7 @@
 
 
 ## Contents
+* [Design Patterns]
 * [Dependencies](#dependencies)
 * [Setup](#setup)
     * [Cloning (HTTPS/SSH)](#cloning-httpsssh)
@@ -11,6 +12,12 @@
 * [Run](#run)
 * [Endpoints](#endpoints)
 * [License](#license)
+
+
+### Design Patterns
+ * Microservices
+ * Middleware
+ * MVC
 
 
 ### Dependencies
@@ -78,8 +85,9 @@ pnpm dev
 #### Faculty
 | HTTP Request | Endpoint              | Description                  |
 |--------------|-----------------------|------------------------------|
+| GET          | /users/faculty/list   | List all faculty             |
 | POST         | /users/faculty/signup | Create new faculty user      |
-| POST         | /users/faculty/signin | Login existing faculty user |
+| POST         | /users/faculty/signin | Login existing faculty user  |
 | GET          | /users/faculty/:email | Get user information         |
 | POST         | /users/faculty/reset  | Reset password               |
 | POST         | /users/faculty/update | Update faculty user          |
@@ -87,6 +95,7 @@ pnpm dev
 #### Student
 | HTTP Request | Endpoint              | Description                  |
 |--------------|-----------------------|------------------------------|
+| GET          | /users/student/list   | List all student             |
 | POST         | /users/student/signup | Create new student user      |
 | POST         | /users/student/signin | Login existing student user  |
 | GET          | /users/student/:email | Get user information         |
