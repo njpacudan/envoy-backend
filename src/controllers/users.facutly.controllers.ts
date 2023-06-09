@@ -2,7 +2,7 @@ import { prisma } from '@lib/prisma';
 import config from '@config';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import { sendVerificationEmail } from './email.controllers';
+import { sendVerificationEmail } from '@middleware/email';
 
 const faculty = {
   // For Admin Panel.

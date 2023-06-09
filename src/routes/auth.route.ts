@@ -1,5 +1,5 @@
 import express from 'express';
-import { verifyUserAccount } from '@controllers/auth.controllers';
+import { verifyUserAccount } from '@middleware/auth';
 
 const router = express.Router();
 
