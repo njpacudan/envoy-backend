@@ -19,6 +19,7 @@
         "@controllers/*": ["controllers/*"],
         "@interfaces/*": ["interfaces/*"],
         "@lib/*": ["lib/*"],
+        "@middleware/*": ["middleware/*"]
     }
   },
   "include": ["**/*.ts"],
