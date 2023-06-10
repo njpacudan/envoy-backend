@@ -2,7 +2,7 @@
 
 
 ## Contents
-* [Design Patterns]
+* [Design Patterns](#design-patterns)
 * [Dependencies](#dependencies)
 * [Setup](#setup)
     * [Cloning (HTTPS/SSH)](#cloning-httpsssh)
